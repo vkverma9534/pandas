@@ -16,6 +16,11 @@ def test_length_of_indexer():
     assert result == 1
 
 
+def test_length_of_indexer_range():
+    indexer = range(0, 5, 2)
+    assert length_of_indexer(indexer) == len(indexer)
+
+
 def test_is_scalar_indexer():
     indexer = (0, 1)
     assert is_scalar_indexer(indexer, 2)
