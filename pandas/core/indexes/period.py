@@ -555,14 +555,14 @@ class PeriodIndex(DatetimeIndexOpsMixin):
     def is_full(self) -> bool:
         """
         Returns True if this PeriodIndex is range-like in that all Periods
-        between start and end are present, in order.
+        between start and end are present, in order. Duplicate entries are allowed.
         """
         if len(self) == 0:
             return True
         if not self.is_monotonic_increasing:
             raise ValueError("Index is not monotonic")
         values = self.asi8
-        return bool(((values[1:] - values[:-1]) == 1).all())
+        return bool(((values[1:] - values[:-1]) < 2).all())
 
     @property
     def inferred_type(self) -> str:
